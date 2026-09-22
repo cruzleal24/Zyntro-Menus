@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Barlow & Fields</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<section class="screen active" id="home">
+  <div class="banner"><div class="logo">B&F</div></div>
+  <div class="head"><h1>Barlow & Fields</h1><p>Café de especialidad · Centro histórico</p></div>
+  <div class="rows">
+    <button class="row" onclick="go('menu')"><div class="ic i3">🍽️</div><div class="tt">Ver menú</div><div class="arrow">›</div></button>
+    <button class="row" onclick="go('reviews')"><div class="ic i2">G</div><div class="tt">Dejar una reseña en Google</div><div class="arrow">›</div></button>
+    <button class="row" onclick="go('wifi')"><div class="ic i4">📶</div><div class="tt">Conectarse al WiFi</div><div class="arrow">›</div></button>
+    <button class="row" onclick="go('social')"><div class="ic i1">♥</div><div class="tt">Síguenos en redes</div><div class="arrow">›</div></button>
+    <button class="row" onclick="go('game')"><div class="ic i5">🎮</div><div class="tt">Mientras esperas: juega</div><div class="arrow">›</div></button>
+  </div>
+</section>
+
+<section class="screen" id="menu">
+  <div class="topbar"><button class="back" onclick="go('home')">←</button><h2>Menú</h2></div>
+  <div class="cat"><h3>CAFÉ CALIENTE</h3>
+    <div class="item"><div><div class="n">Espresso</div></div><div class="p">$45</div></div>
+    <div class="item"><div><div class="n">Piccolo</div></div><div class="p">$55</div></div>
+    <div class="item"><div><div class="n">Latte</div></div><div class="p">$65</div></div>
+  </div>
+  <div class="cat"><h3>PARA COMER</h3>
+    <div class="item"><div><div class="n">Croissant de jamón y queso</div></div><div class="p">$75</div></div>
+    <div class="item"><div><div class="n">Bagel de salmón</div><div class="d">Queso crema y alcaparras</div></div><div class="p">$120</div></div>
+  </div>
+</section>
+
+<section class="screen" id="reviews">
+  <div class="topbar"><button class="back" onclick="go('home')">←</button><h2>Reseñas</h2></div>
+  <div class="rate"><div class="n">4.9</div><div class="s">★★★★★</div><div class="c">Basado en 480 reseñas de Google</div></div>
+  <div class="quote"><p>"El mejor flat white de la zona, y el ambiente para trabajar es perfecto."</p><span>— Renata G.</span></div>
+  <a class="cta" href="#" target="_blank">Escribir mi reseña</a>
+</section>
+
+<section class="screen" id="wifi">
+  <div class="topbar"><button class="back" onclick="go('home')">←</button><h2>WiFi</h2></div>
+  <div class="wifi-card"><div style="font-size:28px;">📶</div><div class="net">BarlowFields_Guest</div><div class="pw">Contraseña: cafe2026</div></div>
+</section>
+
+<section class="screen" id="social">
+  <div class="topbar"><button class="back" onclick="go('home')">←</button><h2>Redes</h2></div>
+  <div class="soc">
+    <a href="#" target="_blank"><div class="ic i1">📷</div><div><div>Instagram</div><div class="h">@barlowandfields</div></div></a>
+    <a href="#" target="_blank"><div class="ic i2">📘</div><div><div>Facebook</div><div class="h">Barlow & Fields</div></div></a>
+    <a href="#" target="_blank"><div class="ic i5">🎵</div><div><div>TikTok</div><div class="h">@barlowandfields</div></div></a>
+  </div>
+</section>
+
+<section class="screen" id="game">
+  <div class="topbar"><button class="back" onclick="go('home')">←</button><h2>Memorama</h2></div>
+  <div class="ghead"><span id="mv">Movimientos: 0</span><span id="pr">Pares: 0/8</span></div>
+  <div class="grid" id="grid"></div>
+  <div class="win" id="win" style="display:none;">☕ ¡Listo en <span id="fm"></span> movimientos!</div>
+  <button class="reset" onclick="initGame()">Reiniciar</button>
+</section>
+
+</div>
+</body>
+</html>
