@@ -14,7 +14,12 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;pad
 .logo{
   width:78px;height:78px;border-radius:50%;background:#fff;border:4px solid #fff;
   position:absolute;left:24px;bottom:-38px;box-shadow:0 2px 10px rgba(0,0,0,.12);
-  display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:26px;color:#8b5e34;
+  display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:26px;color:#8b5e34;overflow: hidden;
+}
+.logo img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .head{padding:50px 24px 20px;}
 .head h1{font-family:'DM Serif Display',serif;font-size:26px;}
