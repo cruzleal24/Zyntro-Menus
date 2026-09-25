@@ -39,13 +39,17 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;pad
   display:flex;align-items:center;gap:14px;padding:16px 4px;border-bottom:1px solid var(--line);
   background:none;border-left:none;border-right:none;border-top:none;width:100%;text-align:left;cursor:pointer;color:var(--text);
 }
+.fa-square-instagram,.fa-square-facebook,.fa-tiktok,.fa-square-whatsapp{
+  font-size: 50px;
+}
+
 .row .ic{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:19px;color:#fff;flex-shrink:0;}
 .row .tt{font-size:18px;font-weight:500;flex:1;}
-.row .arrow{color:var(--muted);font-size:15px;}
+.row .arrow{color:var(--muted);font-size:25px;}
 .i1{background:var(--c1);} .i2{background:var(--c2);} .i3{background:var(--c3);} .i4{background:var(--c4);} .i5{background:var(--c5);}
 
 .topbar{display:flex;align-items:center;gap:14px;padding:22px 24px 18px;border-bottom:1px solid var(--line);}
-.back{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:none;font-size:16px;cursor:pointer;}
+.back{width:38px;height:38px;border-radius:50%;border:2px solid var(--line);background:none;font-size:16px;cursor:pointer;text-align: center;}
 .topbar h2{font-family:'DM Serif Display',serif;font-size:19px;}
 
 .cat{margin:22px 24px 26px;}
