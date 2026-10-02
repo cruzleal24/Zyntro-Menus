@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Menú</title>
+<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#fdf3d9;--blob:#fde29a;--ink:#1a1a1a;--line:#f2c97a}
+  *{box-sizing:border-box;margin:0}
+  body{background:#e9dfc4;display:flex;justify-content:center;padding:16px;font-family:'Patrick Hand','Comic Sans MS',sans-serif;color:var(--ink)}
+  .menu{position:relative;width:100%;max-width:560px;background:var(--bg);overflow:hidden;padding:32px 20px 40px;border-radius:6px}
+  .bg{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+  .menu>*:not(.bg){position:relative;z-index:1}
+  h1{font-family:'Chewy','Arial Black',sans-serif;font-size:clamp(56px,14vw,84px);text-align:center;letter-spacing:2px;line-height:1}
+  section{display:grid;align-items:center;gap:8px;padding:18px 0;border-bottom:2px dashed var(--line)}
+  section:last-of-type{border-bottom:0}
+  section.izq{grid-template-columns:38% 1fr}
+  section.der{grid-template-columns:1fr 38%}
+  section.der svg{order:2}
+  h2{font-family:'Chewy','Arial Black',sans-serif;font-size:28px;text-align:center;letter-spacing:1px;margin-bottom:6px;font-weight:400}
+  ul{list-style:none;padding:0 6px}
+  li{display:flex;justify-content:space-between;gap:16px;font-size:clamp(18px,4.6vw,23px);line-height:1.6}
+  li b{font-weight:400}
+  svg.ilus{width:100%;height:auto;max-height:190px}
+  @media print{body{background:#fff;padding:0}}
+</style>
+</head>
+<body>
+<main class="menu">
+
+  <!-- Manchas decorativas de fondo -->
+  <svg class="bg" viewBox="0 0 560 800" preserveAspectRatio="none" aria-hidden="true">
+    <path fill="#fde29a" d="M400 0h160v90c-40 20-90 0-110-30-10-20-30-40-50-60z"/>
+    <path fill="#fde9b3" d="M0 0h110c-20 40-60 50-70 90-10 40 0 80-40 100z"/>
+    <path fill="#fde9b3" d="M0 470c60-30 120 10 150 60 20 40-10 90-60 100L0 640z"/>
+    <path fill="#fde29a" d="M560 560c-60-10-130 40-120 110 10 70 70 130 120 120z"/>
+  </svg>
+
+  <h1>MENÚ</h1>
+
+  <!-- BEBIDAS -->
+  <section class="izq">
+    <svg class="ilus" viewBox="0 0 200 220" role="img" aria-label="Lata de refresco">
+      <path fill="#fde29a" d="M20 60c30-40 120-50 160 0 30 40 20 110-20 140-40 25-110 20-140-20-20-30-20-90 0-120z"/>
+      <rect x="55" y="40" width="90" height="140" rx="14" fill="#f3a712"/>
+      <path fill="#e8730c" d="M55 110c30-10 60-40 90-50v100c0 8-6 20-14 20H69c-8 0-14-12-14-20z"/>
+      <ellipse cx="100" cy="42" rx="46" ry="12" fill="#3f8f5b"/>
+      <ellipse cx="100" cy="40" rx="18" ry="6" fill="#6bbf7f"/>
+      <rect x="55" y="165" width="90" height="12" rx="6" fill="#e8730c"/>
+      <circle cx="100" cy="112" r="30" fill="#fff"/>
+      <circle cx="100" cy="112" r="24" fill="#f08a1c"/>
+      <path fill="#3f8f5b" d="M100 84c-14-10-28-6-30 4 14 8 24 6 30-4zM100 84c14-10 28-6 30 4-14 8-24 6-30-4z"/>
+      <rect x="98" y="72" width="4" height="14" fill="#8a5a2b"/>
+    </svg>
+    <div>
+      <h2>BEBIDAS</h2>
+      <ul>
+        <li><b>Agua</b><span>$5</span></li>
+        <li><b>1 litro</b><span>$62</span></li>
+        <li><b>Salvietti</b><span>$21</span></li>
+        <li><b>Coca-Cola</b><span>$10</span></li>
+        <li><b>Acuarius</b><span>$30</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SÁNDWICH -->
+  <section class="der">
+    <div>
+      <h2>SÁNDWICH</h2>
+      <ul>
+        <li><b>Sándwich de campo</b><span>$10</span></li>
+        <li><b>Sándwich simple</b><span>$33</span></li>
+        <li><b>Sándwich completo</b><span>$19</span></li>
+        <li><b>Sándwich de pollo</b><span>$22</span></li>
+      </ul>
+    </div>
+    <svg class="ilus" viewBox="0 0 220 180" role="img" aria-label="Sándwich">
+      <path fill="#fde29a" d="M10 60c20-40 120-50 190-10 20 30 10 100-30 120-50 20-130 10-155-40z"/>
+      <path fill="#d9a066" d="M30 70l140-40 20 10-140 50z"/>
+      <path fill="#c58a50" d="M30 70v22l50 26v-22z"/>
+      <path fill="#b9d94a" d="M24 98c14-8 20 4 34 0s16 8 32 4 20 8 36 2 22 6 40-4l12-10-30-14-110 20z"/>
+      <path fill="#f6a58d" d="M40 106c30 8 70 6 110-8l14 14c-40 18-90 22-124 10z"/>
+      <path fill="none" stroke="#c0396b" stroke-width="4" d="M58 108c10 12 28 12 34 2M118 102c8 12 26 10 32-2"/>
+      <path fill="#f8c44a" d="M60 128l60 14 60-26-14-8-50 18-40-10z"/>
+      <path fill="#d9a066" d="M30 126l50 30 100-44v-14l-100 40-50-26z"/>
+      <path fill="#c58a50" d="M30 112v14l50 30v-14z"/>
+    </svg>
+  </section>
+
+  <!-- HAMBURGUESA -->
+  <section class="izq">
+    <svg class="ilus" viewBox="0 0 220 200" role="img" aria-label="Hamburguesa">
+      <path fill="#fde29a" d="M10 70c30-50 150-60 190-10 20 30 10 100-30 120-50 20-130 10-155-40z"/>
+      <path fill="#e69a3a" d="M30 85c0-40 30-60 80-60s80 20 80 60z"/>
+      <g fill="#fff3c9"><ellipse cx="80" cy="48" rx="5" ry="3"/><ellipse cx="115" cy="40" rx="5" ry="3"/><ellipse cx="145" cy="55" rx="5" ry="3"/><ellipse cx="100" cy="64" rx="5" ry="3"/><ellipse cx="60" cy="68" rx="5" ry="3"/></g>
+      <path fill="#f8c44a" d="M20 90h180l-10 14-30-4-20 16-25-14-40 6-25-10z"/>
+      <rect x="28" y="102" width="164" height="26" rx="13" fill="#6b3a1e"/>
+      <path fill="#b9d94a" d="M24 128c10 14 20 0 32 10s22-2 34 8 24-2 36 8 24-4 36 2 20-6 28-18v-6H24z"/>
+      <path fill="#e8873c" d="M34 144h152c0 24-20 36-76 36s-76-12-76-36z"/>
+    </svg>
+    <div>
+      <h2>HAMBURGUESA</h2>
+      <ul>
+        <li><b>Con queso</b><span>$80</span></li>
+        <li><b>Completa</b><span>$62</span></li>
+        <li><b>Simple</b><span>$15</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PAPAS -->
+  <section class="der">
+    <div>
+      <h2>PAPAS</h2>
+      <ul>
+        <li><b>Clásicas</b><span>$12</span></li>
+        <li><b>Picantes</b><span>$34</span></li>
+        <li><b>Con queso</b><span>$23</span></li>
+      </ul>
+    </div>
+    <svg class="ilus" viewBox="0 0 200 220" role="img" aria-label="Papas fritas">
+      <path fill="#fde29a" d="M20 70c30-50 140-50 170 0 20 40 10 110-30 130-50 20-120 0-140-50z"/>
+      <g stroke-linecap="round" stroke-width="16">
+        <path stroke="#f5a623" d="M62 120L48 50M82 120L74 28M104 120l2-96M126 120l14-86M146 120l24-66"/>
+        <path stroke="#f8c44a" d="M92 120L88 40M116 120l12-72M136 120l8-60"/>
+      </g>
+      <path fill="#ee3a4b" d="M44 112h112l-14 88c-1 6-6 10-12 10H70c-6 0-11-4-12-10z"/>
+      <path fill="#fbb8bf" d="M44 112c20 24 40 22 56 4 16 18 36 20 56-4v10c-20 24-40 22-56 4-16 18-36 20-56-4z"/>
+    </svg>
+  </section>
+
+</main>
+</body>
+</html>
