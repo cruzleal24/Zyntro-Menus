@@ -2,6 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <link rel="stylesheet" href="css/style.css"></head><body><div class="wrap"><div id="app">
 <div class="page active" data-page="home">
@@ -10,7 +11,7 @@
 <div class="card primary" onclick="nav('menu')"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v8M9 3v8M6 7h3M7.5 11v10M16 21V3c-2 1.5-3 4-3 7 0 2 1 3 3 3"/></svg></span><span class="txt"><b>Ver menú</b><small>Explora nuestros productos y servicios</small></span></div>
 <div class="grid">
 <div class="card tile star" onclick="nav('reviews')"><span class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"/></svg></span><span class="txt"><b>Reseña en Google</b><small>Cuéntanos cómo te fue</small></span></div>
-<div class="card tile" onclick="nav('wifi')"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a15 15 0 0120 0M5.5 12.5a10 10 0 0113 0M9 16a5 5 0 016 0"/><circle cx="12" cy="19.5" r="1" fill="currentColor"/></svg></span><span class="txt"><b>Conectarse al WiFi</b><small>Acceso rápido</small></span></div>
+<!--div class="card tile" onclick="nav('wifi')"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a15 15 0 0120 0M5.5 12.5a10 10 0 0113 0M9 16a5 5 0 016 0"/><circle cx="12" cy="19.5" r="1" fill="currentColor"/></svg></span><span class="txt"><b>Conectarse al WiFi</b><small>Acceso rápido</small></span></div-->
 <div class="card tile soc" onclick="nav('social')"><span class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.5C1.2 8 3.4 4.5 7 4.5c2 0 3.4 1 5 3 1.6-2 3-3 5-3 3.6 0 5.8 3.5 4.5 7C19.5 16.4 12 21 12 21z"/></svg></span><span class="txt"><b>Síguenos</b><small>Novedades y promos</small></span></div>
 <div class="card tile game" onclick="nav('game')"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="11" rx="5"/><path d="M7 10v5M4.5 12.5h5"/><circle cx="16" cy="11" r=".8" fill="currentColor"/><circle cx="18.5" cy="14" r=".8" fill="currentColor"/></svg></span><span class="txt"><b>Mientras esperas</b><small>Juega un rato</small></span></div>
 </div></main><footer>zyntro.com.mx</footer></div>
@@ -22,7 +23,18 @@
 <div class="quoteCard"><p style="margin:0">"El servicio fue rápido y muy profesional, resolvieron todo en un día."</p><footer>— Renata G.</footer></div>
 <div style="padding:0 16px"><a class="btn" href="https://g.page/r/CXPHj7xUiddpEBM/review" target="_blank">Escribir mi reseña</a></div></div>
 
-<div class="page" data-page="social"><div class="pageHead"><span class="backBtn" onclick="nav('home')">←</span><h2>Redes</h2></div><div class="socList"><a class="card" href="https://instagram.com/zyntromx" target="_blank"><span class="letterBadge" style="background:#E4405F">I</span><span class="txt"><b>Instagram</b><small>@zyntro</small></span></a><a class="card" href="https://www.facebook.com/profile.php?id=61590518157250" target="_blank"><span class="letterBadge" style="background:#1877F2">F</span><span class="txt"><b>Facebook</b><small>Zyntro</small></span></a><a class="card" href="https://wa.me/5233 3407 3035" target="_blank"><span class="letterBadge" style="background:#25D366">W</span><span class="txt"><b>WhatsApp</b><small>@zyntro</small></span></a></div></div>
+<div class="page" data-page="social">
+    <div class="pageHead">
+        <span class="backBtn" onclick="nav('home')">←</span>
+        <h2>Redes</h2>
+    </div>
+    <div class="socList">
+        <a class="card" href="https://instagram.com/zyntromx" target="_blank">
+            <span class="letterBadge" style="background:#E4405F"><i class="fa-brands fa-instagram"></i></span><span class="txt"><b>Instagram</b><small>@zyntro</small></span>
+        </a>
+        <a class="card" href="https://www.facebook.com/profile.php?id=61590518157250" target="_blank">
+            <span class="letterBadge" style="background:#1877F2"><i class="fa-brands fa-facebook"></i></span><span class="txt"><b>Facebook</b><small>Zyntro</small></span></a>
+            <a class="card" href="https://wa.me/5233 3407 3035" target="_blank"><span class="letterBadge" style="background:#25D366"><i class="fa-brands fa-whatsapp"></i></span><span class="txt"><b>WhatsApp</b><small>@zyntro</small></span></a></div></div>
 
 <div class="page" data-page="wifi"><div class="pageHead"><span class="backBtn" onclick="nav('home')">←</span><h2>WiFi</h2></div>
 <div class="wifiWrap"><b>Conéctate a nuestra red</b><div id="qrFinal"></div><p style="margin-top:10px;color:var(--muted);font-size:13px">WiFi no configurado</p></div></div>

@@ -32,7 +32,8 @@ footer{text-align:center;font-size:12px;color:var(--muted);padding:4px 16px 24px
 .quoteCard footer{margin-top:10px;font-style:normal;color:var(--muted);font-size:13px}
 .btn{display:block;padding:14px;border-radius:14px;background:linear-gradient(135deg,var(--blue),#0F4FD6);color:#fff;font-weight:700;text-align:center;text-decoration:none}
 .socList{padding:0 16px;display:grid;gap:12px;margin-top:16px}
-.letterBadge{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;color:#fff;font-weight:700;font-size:18px;flex:none}
+.letterBadge{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:18px;flex:none}
+.letterBadge .fa-brands{font-size: 36px;}
 .wifiWrap{text-align:center;padding:28px 16px}
 #qrFinal{display:inline-block;margin-top:14px;padding:12px;background:#fff;border-radius:16px}
 .gameBar{display:flex;justify-content:space-between;padding:14px 16px 4px;font-size:13px;color:var(--muted)}
