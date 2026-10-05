@@ -41,3 +41,69 @@ footer{text-align:center;font-size:12px;color:var(--muted);padding:4px 16px 24px
 .cell{aspect-ratio:1;border-radius:14px;background:var(--chip);display:grid;place-items:center;font-size:26px;cursor:pointer;border:1px solid var(--line)}
 .cell.hidden-c{font-size:0} .cell.matched{opacity:.35}
 .resetBtn{display:block;margin:16px auto 0;padding:10px 20px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+
+/* ===== MENÚ DE RESTAURANTE ===== */
+.restaurantMenu{
+  --menu-red:#a31621;--menu-red2:#7d0f18;--menu-ink:#1e1b1b;
+  --menu-muted:#6b6464;--menu-bg:#f6f2ef;--menu-card:#fff;--menu-line:#eadfd9;
+  background:var(--menu-bg);color:var(--menu-ink);min-height:100vh;padding-bottom:90px;
+}
+.restaurantMenu .pageHead{background:var(--menu-bg)}
+.restaurantHero{
+  background:radial-gradient(circle at 20% 20%,#5a2a14,transparent 55%),linear-gradient(160deg,#2b1a12,#0f0907);
+  color:#fff;text-align:center;padding:32px 20px 64px;
+}
+.restaurantLogo{
+  width:82px;height:82px;border-radius:50%;background:var(--menu-red);border:3px solid #fff;
+  margin:0 auto 12px;display:grid;place-items:center;
+}
+.restaurantLogo svg{width:48px;height:48px;color:#fff}
+.restaurantHero h1{margin:0;font-size:32px;font-weight:700}
+.restaurantHero p{margin:5px 0 0;opacity:.85;font-size:14px}
+.restaurantPanel{
+  position:relative;margin:-34px 12px 0;background:var(--menu-bg);
+  border-radius:24px 24px 0 0;padding:16px 4px 24px;
+}
+.restaurantTools{
+  display:flex;gap:10px;flex-wrap:wrap;position:sticky;top:0;
+  background:var(--menu-bg);padding:8px 0 12px;z-index:5;
+}
+.restaurantTabs{display:flex;gap:7px;overflow-x:auto;width:100%;padding-bottom:2px}
+.restaurantTab{
+  border:0;background:transparent;color:var(--menu-ink);font:600 13px 'Sora',sans-serif;
+  padding:9px 13px;border-radius:999px;cursor:pointer;display:flex;gap:6px;align-items:center;white-space:nowrap;
+}
+.restaurantTab svg{width:18px;height:18px}
+.restaurantTab[aria-selected=true]{background:var(--menu-red);color:#fff}
+#menuSearch{
+  width:100%;border:1px solid var(--menu-line);background:var(--menu-card);color:var(--menu-ink);
+  padding:11px 14px;border-radius:999px;font:400 14px 'Sora',sans-serif;
+}
+.restaurantGrid{display:grid;gap:11px;margin-top:4px}
+.foodCard{
+  display:flex;gap:11px;background:var(--menu-card);border:1px solid var(--menu-line);
+  border-radius:16px;padding:10px;
+}
+.foodThumb{flex:0 0 88px;height:105px;border-radius:12px;display:grid;place-items:center}
+.foodThumb svg{width:66px;height:66px}
+.foodInfo{display:flex;flex-direction:column;flex:1;min-width:0}
+.foodBadge{align-self:flex-start;background:var(--menu-red);color:#fff;font-size:10px;font-weight:600;padding:3px 8px;border-radius:999px;margin-bottom:4px}
+.foodInfo h3{margin:0;font-size:14px;font-weight:700}
+.foodInfo p{color:var(--menu-muted);font-size:11px;margin:3px 0 6px;line-height:1.4}
+.foodRow{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:6px}
+.foodPrice{color:var(--menu-red);font-weight:700;font-size:15px}
+.foodAdd{border:1px solid var(--menu-red);color:var(--menu-red);background:transparent;font:600 11px 'Sora',sans-serif;padding:6px 9px;border-radius:999px;cursor:pointer}
+.menuEmpty{text-align:center;color:var(--menu-muted);padding:32px 0;font-size:13px}
+.restaurantFoot{text-align:center;color:var(--menu-muted);font-size:12px;margin:22px 0 6px}
+.orderBar{
+  position:fixed;left:50%;bottom:0;width:min(480px,100%);transform:translate(-50%,100%);
+  background:var(--menu-red2);color:#fff;display:flex;justify-content:center;gap:12px;
+  align-items:center;padding:13px 12px;transition:.25s;z-index:20;font-size:12px;
+}
+.orderBar.on{transform:translate(-50%,0)}
+.orderBar button{border:0;background:transparent;color:#fff;text-decoration:underline;cursor:pointer}
+@media(max-width:380px){
+  .foodThumb{flex-basis:76px;height:96px}
+  .foodThumb svg{width:58px;height:58px}
+}
+

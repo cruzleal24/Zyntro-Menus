@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Terraza · Menú</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Ilustraciones reutilizables -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-comida" viewBox="0 0 100 100"><path fill="currentColor" d="M18 12v28c0 5 4 8 8 8v40h6V48c4 0 8-3 8-8V12h-4v20h-3V12h-4v20h-3V12zM64 12c-8 6-10 20-6 34 1 3 3 5 6 5v37h6V12z"/></symbol>
+  <symbol id="i-bebida" viewBox="0 0 100 100"><path fill="currentColor" d="M30 28h40l-5 62H35zM62 8l4 2-6 18h-6z"/></symbol>
+  <symbol id="i-postre" viewBox="0 0 100 100"><path fill="currentColor" d="M50 10a8 8 0 0 1 8 8c0 6-8 10-8 10s-8-4-8-10a8 8 0 0 1 8-8zM16 50h68v14c-6 6-12 6-17 0-5 6-12 6-17 0-5 6-12 6-17 0zM20 70h60v18H20z"/></symbol>
+
+  <symbol id="burger" viewBox="0 0 100 100">
+    <path fill="#e69a3a" d="M14 46c0-20 16-30 36-30s36 10 36 30z"/>
+    <g fill="#fff3c9"><ellipse cx="36" cy="30" rx="3" ry="2"/><ellipse cx="52" cy="26" rx="3" ry="2"/><ellipse cx="66" cy="34" rx="3" ry="2"/></g>
+    <path fill="#f8c44a" d="M10 48h80l-8 10-16-4-10 8-12-8-18 4z"/>
+    <rect x="12" y="54" width="76" height="14" rx="7" fill="#5b2f17"/>
+    <path fill="#8fc23c" d="M10 68c6 8 12 0 20 6s14-2 22 4 14-4 22 2 12-4 16-10v-4H10z"/>
+    <path fill="#d9772e" d="M16 76h68c0 12-12 18-34 18S16 88 16 76z"/>
+  </symbol>
+  <symbol id="taco" viewBox="0 0 100 100">
+    <path fill="#8fc23c" d="M14 56c8-10 14 2 22-6s14 4 22-4 14 4 22-2 6 6 6 6z"/>
+    <path fill="#d33b2c" d="M30 52h40v8H30z"/>
+    <path fill="#f2b94b" d="M8 58h84c0 22-18 34-42 34S8 80 8 58z"/>
+    <path fill="#e59a2b" d="M8 58h84v6H8z"/>
+  </symbol>
+  <symbol id="pizza" viewBox="0 0 100 100">
+    <path fill="#f2b94b" d="M50 92L10 28c24-14 56-14 80 0z"/>
+    <path fill="#e59a2b" d="M10 28c24-14 56-14 80 0l-3 6c-23-12-51-12-74 0z"/>
+    <path fill="#d33b2c" d="M50 82L18 34c20-10 44-10 64 0z"/>
+    <path fill="#fde08a" d="M50 78L22 36c18-8 38-8 56 0z"/>
+    <circle cx="38" cy="44" r="6" fill="#b3261e"/><circle cx="60" cy="48" r="6" fill="#b3261e"/><circle cx="50" cy="64" r="5" fill="#b3261e"/>
+  </symbol>
+  <symbol id="fries" viewBox="0 0 100 100">
+    <g stroke-linecap="round" stroke-width="9" stroke="#f5b82e"><path d="M32 52L28 20M44 52l-2-36M56 52l2-38M68 52l6-30"/></g>
+    <path fill="#e23b4a" d="M22 48h56l-6 42H28z"/>
+    <path fill="#fbb8bf" d="M22 48h56l-1 8H23z"/>
+  </symbol>
+  <symbol id="soda" viewBox="0 0 100 100">
+    <path fill="#f2d7b0" d="M24 24h52l-6 8H30z"/>
+    <path fill="#c0392b" d="M28 32h44l-5 58H33z"/>
+    <path fill="#e85a4a" d="M28 32h44l-1 12H27z"/>
+    <path fill="#fff" d="M52 8l4 2-4 14h-5z"/>
+  </symbol>
+  <symbol id="coffee" viewBox="0 0 100 100">
+    <path fill="#fff" d="M16 38h56v28c0 14-10 24-28 24S16 80 16 66z"/>
+    <path fill="none" stroke="#fff" stroke-width="7" d="M72 46h6a10 10 0 0 1 0 22h-8"/>
+    <path fill="#6b3a1e" d="M18 40h52v6H18z"/>
+    <path fill="none" stroke="#f2d7b0" stroke-width="3" stroke-linecap="round" d="M34 28c-4-6 4-8 0-14M50 28c-4-6 4-8 0-14"/>
+  </symbol>
+  <symbol id="juice" viewBox="0 0 100 100">
+    <path fill="#fde0a0" d="M26 24h48l-6 66H32z"/>
+    <path fill="#f08a1c" d="M28 40h44l-4 50H32z"/>
+    <circle cx="72" cy="26" r="14" fill="#f9a42a"/><circle cx="72" cy="26" r="10" fill="#fcd67a"/>
+    <path stroke="#f9a42a" stroke-width="2" d="M72 16v20M62 26h20"/>
+  </symbol>
+  <symbol id="cake" viewBox="0 0 100 100">
+    <path fill="#8a4b2a" d="M14 56l72-12v30L14 84z"/>
+    <path fill="#fbe3c2" d="M14 70l72-12v6L14 76z"/>
+    <path fill="#a8582f" d="M14 56l72-12-10-14L22 40z"/>
+    <path fill="#fff" d="M22 40l54-10 10 14-72 12z" opacity=".35"/>
+    <circle cx="58" cy="30" r="7" fill="#d9253a"/>
+  </symbol>
+  <symbol id="icecream" viewBox="0 0 100 100">
+    <path fill="#e2b06a" d="M32 52h36L50 94z"/>
+    <path stroke="#c98d45" stroke-width="2" d="M38 60l24 8M36 70l20 8"/>
+    <circle cx="50" cy="40" r="20" fill="#f7b6c9"/>
+    <circle cx="42" cy="28" r="14" fill="#fff3d6"/>
+    <circle cx="60" cy="26" r="6" fill="#d9253a"/>
+  </symbol>
+  <symbol id="flan" viewBox="0 0 100 100">
+    <ellipse cx="50" cy="82" rx="38" ry="8" fill="#fff"/>
+    <path fill="#f6c453" d="M22 74c0-26 12-40 28-40s28 14 28 40z"/>
+    <path fill="#b8631a" d="M22 74c0-14 4-24 10-30 6 8 10 14 18 14s12-6 18-14c6 6 10 16 10 30z"/>
+  </symbol>
+</svg>
+
+<header class="hero">
+  <div class="logo" aria-hidden="true"><svg width="54" height="54" viewBox="0 0 100 100" style="color:#fff"><use href="#i-comida"/></svg></div>
+  <h1>La Terraza</h1>
+  <p>Buen ambiente, buena comida</p>
+</header>
+
+<main class="panel">
+  <div class="tools">
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <input type="search" id="q" placeholder="Buscar en el menú" aria-label="Buscar en el menú">
+  </div>
+  <div class="grid" id="grid" role="tabpanel"></div>
+  <p class="foot">Gracias por apoyar el local ❤️</p>
+</main>
+
+<div class="bar" id="bar">
+  <span id="resumen"></span>
+  <button class="clear" id="vaciar">Vaciar</button>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
