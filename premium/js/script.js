@@ -26,32 +26,91 @@ function clearOrder(){ CART={}; updateOrderBar(); }
 function removeFromCart(n){ delete CART[n]; updateOrderBar(); }
 var BIZ_NAME="Zyntro", ORDER_WA="523334073035";
 function buildTicketPdf(){
-  var jsPDF=window.jspdf.jsPDF; var doc=new jsPDF();
+  if(!window.jspdf || !window.jspdf.jsPDF){
+    throw new Error('La librería jsPDF no está disponible. Revisa tu conexión a internet.');
+  }
+  var jsPDF=window.jspdf.jsPDF;
+  var doc=new jsPDF({unit:'mm',format:'a4'});
   var now=new Date().toLocaleString('es-MX');
-  doc.setFontSize(16); doc.text(BIZ_NAME, 14, 18);
-  doc.setFontSize(10); doc.text('Ticket de pedido · '+now, 14, 25);
+  doc.setFontSize(16); doc.text(BIZ_NAME,14,18);
+  doc.setFontSize(10); doc.text('Ticket de pedido · '+now,14,25);
   doc.setLineWidth(.3); doc.line(14,29,196,29);
-  var y=38, total=0;
+  var y=38,total=0;
   doc.setFontSize(11);
   Object.keys(CART).forEach(function(n){
-    var it=CART[n]; var sub=it.qty*priceNum(it.price); total+=sub;
-    doc.text(it.qty+'x '+n, 14, y);
-    doc.text('$'+sub.toFixed(2), 196, y, {align:'right'});
+    var it=CART[n],sub=it.qty*priceNum(it.price); total+=sub;
+    if(y>275){doc.addPage();y=20;}
+    doc.text(it.qty+'x '+n,14,y);
+    doc.text('$'+sub.toFixed(2),196,y,{align:'right'});
     y+=7;
   });
   doc.setLineWidth(.3); doc.line(14,y+2,196,y+2);
-  doc.setFontSize(13); doc.text('Total: $'+total.toFixed(2), 14, y+12);
+  doc.setFontSize(13); doc.text('Total: $'+total.toFixed(2),14,y+12);
   return doc;
 }
-function sendOrder(){
-  if(Object.keys(CART).length===0) return;
-  var doc=buildTicketPdf();
-  var blob=doc.output('blob');
-  var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='pedido-'+Date.now()+'.pdf';
+
+function orderText(){
+  var total=0;
+  var lines=Object.keys(CART).map(function(n){
+    var it=CART[n],sub=it.qty*priceNum(it.price); total+=sub;
+    return it.qty+'x '+n+' - $'+sub.toFixed(2);
+  });
+  return 'Pedido - '+BIZ_NAME+'
+'+lines.join('
+')+'
+Total: $'+total.toFixed(2);
+}
+
+function downloadBlob(blob,filename){
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a');
+  a.href=url; a.download=filename;
   document.body.appendChild(a); a.click(); a.remove();
-  var total=0; var lines=Object.keys(CART).map(function(n){ var it=CART[n]; var sub=it.qty*priceNum(it.price); total+=sub; return it.qty+'x '+n+' - $'+sub.toFixed(2); });
-  var text='Pedido - '+BIZ_NAME+'\n'+lines.join('\n')+'\nTotal: $'+total.toFixed(2)+'\n\n(Adjunto el ticket que acabo de descargar)';
-  if(ORDER_WA){ window.open('https://wa.me/'+ORDER_WA+'?text='+encodeURIComponent(text), '_blank'); }
+  setTimeout(function(){URL.revokeObjectURL(url);},1500);
+}
+
+function downloadOrderPdf(){
+  if(Object.keys(CART).length===0){alert('Agrega al menos un producto al pedido.');return;}
+  try{
+    var doc=buildTicketPdf();
+    downloadBlob(doc.output('blob'),'pedido-'+Date.now()+'.pdf');
+  }catch(err){
+    alert(err.message || 'No fue posible crear el PDF.');
+  }
+}
+
+async function sendOrder(){
+  if(Object.keys(CART).length===0){alert('Agrega al menos un producto al pedido.');return;}
+  var text=orderText();
+  try{
+    var doc=buildTicketPdf();
+    var blob=doc.output('blob');
+    var file=new File([blob],'pedido-'+Date.now()+'.pdf',{type:'application/pdf'});
+
+    // En móvil/HTTPS comparte el PDF real usando la hoja nativa del teléfono.
+    if(navigator.share && (!navigator.canShare || navigator.canShare({files:[file]}))){
+      await navigator.share({
+        title:'Pedido - '+BIZ_NAME,
+        text:text,
+        files:[file]
+      });
+      return;
+    }
+
+    // Fallback: descarga el PDF y abre WhatsApp con el texto del pedido.
+    downloadBlob(blob,file.name);
+    if(ORDER_WA){
+      window.location.href='https://wa.me/'+ORDER_WA+'?text='+encodeURIComponent(text);
+    }
+  }catch(err){
+    if(err && err.name==='AbortError') return;
+    // Si falla compartir PDF, al menos permite enviar el texto por WhatsApp.
+    if(ORDER_WA){
+      window.location.href='https://wa.me/'+ORDER_WA+'?text='+encodeURIComponent(text);
+    }else{
+      alert((err && err.message) || 'No fue posible enviar el pedido.');
+    }
+  }
 }
 function updateOrderBar(){
   var count=0,total=0;

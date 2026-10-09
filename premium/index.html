@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap">
 
 
-<link rel="stylesheet" href="css/style.css"></head><body>
+<link rel="stylesheet" href="./css/style.css"></head><body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
 <symbol id="icn-camera" viewBox="0 0 100 100"><rect x="8" y="36" width="56" height="28" rx="9" fill="#2b2f36"/><circle cx="74" cy="50" r="21" fill="#3a3f46"/><circle cx="74" cy="50" r="14" fill="#7fb3ff"/><circle cx="74" cy="50" r="6" fill="#1a1d22"/><rect x="2" y="45" width="11" height="11" rx="3" fill="#e5484d"/></symbol>
 <symbol id="icn-wifi" viewBox="0 0 100 100"><rect x="18" y="60" width="16" height="26" rx="4" fill="#f2994a"/><rect x="42" y="42" width="16" height="44" rx="4" fill="#f2b05a"/><rect x="66" y="24" width="16" height="62" rx="4" fill="#f7c873"/></symbol>
@@ -33,7 +33,7 @@
 <div class="menuPanel">
 <div class="menuTools"><div class="mtabsRow" id="menuTabs"></div><input type="search" class="msearch" id="menuSearch" placeholder="Buscar en el menú"></div>
 <div class="menuGrid" id="menuGrid"></div>
-<div class="orderBar" id="orderBar"><div class="cartList" id="cartList"></div><div class="obSummaryRow"><span id="orderSummary"></span><span class="obBtns"><button class="obSend" onclick="sendOrder()">Enviar pedido</button><button class="obClear" onclick="clearOrder()">Vaciar</button></span></div></div>
+<div class="orderBar" id="orderBar"><div class="cartList" id="cartList"></div><div class="obSummaryRow"><span id="orderSummary"></span><span class="obBtns"><button class="obPdf" onclick="downloadOrderPdf()">PDF</button><button class="obSend" onclick="sendOrder()">Enviar pedido</button><button class="obClear" onclick="clearOrder()">Vaciar</button></span></div></div>
 </div></div>
 
 <div class="page" data-page="reviews"><div class="pageHead"><span class="backBtn" onclick="nav('home')">←</span><h2>Reseñas</h2></div>
@@ -60,5 +60,5 @@
 <div style="padding:18px 16px"><a class="btn" href="https://maps.app.goo.gl/YsnsJo8C1tB7CJzm9" target="_blank">Cómo llegar</a></div></div>
 </div></div>
 
-  <script src="js/script.js"></script>
+  <script defer src="./js/script.js"></script>
 </body></html>
