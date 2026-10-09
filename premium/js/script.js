@@ -1,4 +1,70 @@
 function nav(p){document.querySelectorAll('#app .page').forEach(function(e){e.classList.toggle('active', e.dataset.page===p)}); if(p==='game') startGame();}
+var MENU_DATA=[{"label":"Servicios","icon":"🛠️","items":[{"name":"Instalación de cámaras","price":"$1,500","desc":"Incluye instalación, configuración y pruebas","emoji":"🎥","top":false},{"name":"Configuración de red","price":"$800","desc":"Configuración de router y red WiFi","emoji":"📶","top":false},{"name":"Instalación de punto de red","price":"$650","desc":"Incluye cableado y conectorización","emoji":"🔌","top":false},{"name":"Configuración de router","price":"$500","desc":"Configuración de WiFi, seguridad y contraseña","emoji":"📡","top":false},{"name":"Instalación de access point","price":"$900","desc":"Instalación y configuración de punto de acceso","emoji":"📶","top":false},{"name":"Mantenimiento de cámaras","price":"$750","desc":"Limpieza, revisión y ajuste del sistema","emoji":"🧰","top":false},{"name":"Configuración de DVR","price":"$600","desc":"Configuración de grabación y acceso remoto","emoji":"🎞️","top":false},{"name":"Configuración de NVR","price":"$650","desc":"Configuración de cámaras IP y almacenamiento","emoji":"💾","top":false},{"name":"Instalación de switch","price":"$700","desc":"Instalación y configuración básica","emoji":"🔀","top":false},{"name":"Diagnóstico de red","price":"$500","desc":"Revisión de conexión, velocidad y cobertura","emoji":"🔍","top":false},{"name":"Optimización de WiFi","price":"$850","desc":"Análisis y mejora de cobertura inalámbrica","emoji":"📶","top":false},{"name":"Cableado estructurado","price":"$1,200","desc":"Instalación y organización de cableado","emoji":"🧵","top":false},{"name":"Configuración de VLAN","price":"$900","desc":"Segmentación y configuración de red","emoji":"🖧","top":false},{"name":"Instalación de control de acceso","price":"$1,800","desc":"Instalación y configuración del sistema","emoji":"🔐","top":false},{"name":"Mantenimiento preventivo","price":"$950","desc":"Revisión general de equipos y conexiones","emoji":"🛠️","top":false}]},{"label":"Productos","icon":"📦","items":[{"name":"Cámara Hikvision 2MP","price":"$950","desc":"Cámara para videovigilancia","emoji":"📷","top":false},{"name":"Cámara Hikvision 4MP","price":"$1,450","desc":"Mayor resolución de imagen","emoji":"🎥","top":false},{"name":"DVR Hikvision 4 canales","price":"$1,650","desc":"Grabador para cámaras de seguridad","emoji":"💾","top":false},{"name":"NVR Hikvision 8 canales","price":"$2,450","desc":"Grabador para cámaras IP","emoji":"🖥️","top":false},{"name":"Disco duro 1TB","price":"$1,150","desc":"Almacenamiento para videovigilancia","emoji":"💽","top":false},{"name":"Router WiFi 6","price":"$1,200","desc":"Router inalámbrico de alta velocidad","emoji":"📡","top":false},{"name":"Access Point WiFi 6","price":"$1,850","desc":"Cobertura WiFi para negocios","emoji":"📶","top":false},{"name":"Switch Gigabit 8 puertos","price":"$850","desc":"Conectividad para equipos de red","emoji":"🔀","top":false},{"name":"Switch PoE 8 puertos","price":"$1,650","desc":"Alimentación PoE para cámaras y AP","emoji":"⚡","top":false},{"name":"Cable UTP Cat6 10 metros","price":"$250","desc":"Cable Ethernet para redes Gigabit","emoji":"🔌","top":false},{"name":"Patch Cord Cat6 1 metro","price":"$90","desc":"Cable de conexión Ethernet","emoji":"🧵","top":false},{"name":"Conector RJ45 Cat6","price":"$15","desc":"Conector para cable de red","emoji":"🔗","top":false},{"name":"UPS 1000VA","price":"$1,650","desc":"Respaldo eléctrico para equipos","emoji":"🔋","top":false},{"name":"Rack de pared 6U","price":"$1,850","desc":"Organización de equipos de telecomunicaciones","emoji":"🗄️","top":false},{"name":"Fuente de poder 12V","price":"$350","desc":"Alimentación para cámaras CCTV","emoji":"⚡","top":false}]},{"label":"Paquetes","icon":"🎁","items":[{"name":"Paquete CCTV Básico","price":"$8,500","desc":"2 cámaras, DVR, disco duro, instalación y configuración","emoji":"🎥","top":false},{"name":"Paquete CCTV Negocio","price":"$12,500","desc":"4 cámaras, DVR, disco duro, instalación y configuración","emoji":"🏪","top":false},{"name":"Paquete WiFi Negocio","price":"$6,500","desc":"Access point, configuración y optimización de cobertura","emoji":"📶","top":false},{"name":"Paquete Red Oficina","price":"$7,900","desc":"Switch, cableado y 6 puntos de red","emoji":"🖧","top":false},{"name":"Paquete Seguridad y Red","price":"$14,900","desc":"CCTV, red WiFi y configuración completa","emoji":"🛡️","top":false}]},{"label":"Tecnología NFC","icon":"📲","items":[{"name":"Tarjeta NFC Digital","price":"$350","desc":"Acceso a información mediante NFC y QR","emoji":"💳","top":false},{"name":"Tarjeta NFC para Reseñas","price":"$450","desc":"Acceso directo a reseñas de Google","emoji":"⭐","top":false},{"name":"Tarjeta NFC para WhatsApp","price":"$350","desc":"Abre directamente una conversación de WhatsApp","emoji":"💬","top":false},{"name":"Menú Digital Básico","price":"$1,200","desc":"Menú optimizado para dispositivos móviles","emoji":"📱","top":false},{"name":"Menú Digital + NFC","price":"$1,650","desc":"Menú digital con tarjeta NFC configurada","emoji":"🍽️","top":false},{"name":"Perfil Digital Profesional","price":"$1,500","desc":"Servicios, contacto, fotografías y redes sociales","emoji":"👤","top":false},{"name":"Perfil Digital + NFC","price":"$1,850","desc":"Perfil profesional con tarjeta NFC","emoji":"💼","top":false},{"name":"Configuración NFC","price":"$250","desc":"Programación y pruebas de tarjeta NFC","emoji":"📲","top":false}]}];
+var MENU_STATE={cat:null,q:''}, CART={};
+function esc2(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+function priceNum(p){var n=parseFloat((p||'').replace(/[^0-9.]/g,'')); return isNaN(n)?0:n;}
+function renderMenuPage(){
+  if(!MENU_STATE.cat || !MENU_DATA.find(function(c){return c.label===MENU_STATE.cat})) MENU_STATE.cat = MENU_DATA[0]?MENU_DATA[0].label:null;
+  var tabsEl=document.getElementById('menuTabs');
+  tabsEl.innerHTML = MENU_DATA.map(function(c){return '<button class="mtab'+(c.label===MENU_STATE.cat?' active':'')+'" data-cat="'+esc2(c.label)+'">'+c.icon+' '+esc2(c.label)+'</button>';}).join('');
+  Array.prototype.forEach.call(tabsEl.querySelectorAll('.mtab'), function(b){ b.onclick=function(){ MENU_STATE.cat=b.dataset.cat; MENU_STATE.q=''; document.getElementById('menuSearch').value=''; renderMenuPage(); }; });
+  renderMenuGrid();
+}
+function renderMenuGrid(){
+  var q=(MENU_STATE.q||'').toLowerCase(), items;
+  if(q){ items=[]; MENU_DATA.forEach(function(c){ c.items.forEach(function(it){ if((it.name+' '+it.desc).toLowerCase().indexOf(q)>-1) items.push(it); }); }); }
+  else { var c=MENU_DATA.find(function(c){return c.label===MENU_STATE.cat}); items=c?c.items:[]; }
+  var grid=document.getElementById('menuGrid');
+  grid.innerHTML = items.length ? items.map(function(it,i){ return '<div class="menuCard"><div class="mThumb c'+(i%4)+'">'+it.emoji+'</div><div class="mInfo">'+(it.top?'<span class="mBadge">★ Destacado</span>':'')+'<b>'+esc2(it.name)+'</b>'+(it.desc?'<small>'+esc2(it.desc)+'</small>':'')+'<div class="mRow"><span class="mPrice">'+esc2(it.price)+'</span><button class="mAdd" data-n="'+esc2(it.name)+'" data-p="'+esc2(it.price)+'">Agregar</button></div></div></div>'; }).join('') : '<p class="emptyMsg">No encontramos productos.</p>';
+  Array.prototype.forEach.call(grid.querySelectorAll('.mAdd'), function(b){ b.onclick=function(){
+    var n=b.dataset.n; if(!CART[n]) CART[n]={qty:0,price:b.dataset.p}; CART[n].qty++;
+    b.textContent='Agregado ✓'; b.classList.add('added'); setTimeout(function(){b.textContent='Agregar'; b.classList.remove('added');},900);
+    updateOrderBar();
+  }; });
+}
+function clearOrder(){ CART={}; updateOrderBar(); }
+function removeFromCart(n){ delete CART[n]; updateOrderBar(); }
+var BIZ_NAME="Zyntro", ORDER_WA="523334073035";
+function buildTicketPdf(){
+  var jsPDF=window.jspdf.jsPDF; var doc=new jsPDF();
+  var now=new Date().toLocaleString('es-MX');
+  doc.setFontSize(16); doc.text(BIZ_NAME, 14, 18);
+  doc.setFontSize(10); doc.text('Ticket de pedido · '+now, 14, 25);
+  doc.setLineWidth(.3); doc.line(14,29,196,29);
+  var y=38, total=0;
+  doc.setFontSize(11);
+  Object.keys(CART).forEach(function(n){
+    var it=CART[n]; var sub=it.qty*priceNum(it.price); total+=sub;
+    doc.text(it.qty+'x '+n, 14, y);
+    doc.text('$'+sub.toFixed(2), 196, y, {align:'right'});
+    y+=7;
+  });
+  doc.setLineWidth(.3); doc.line(14,y+2,196,y+2);
+  doc.setFontSize(13); doc.text('Total: $'+total.toFixed(2), 14, y+12);
+  return doc;
+}
+function sendOrder(){
+  if(Object.keys(CART).length===0) return;
+  var doc=buildTicketPdf();
+  var blob=doc.output('blob');
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='pedido-'+Date.now()+'.pdf';
+  document.body.appendChild(a); a.click(); a.remove();
+  var total=0; var lines=Object.keys(CART).map(function(n){ var it=CART[n]; var sub=it.qty*priceNum(it.price); total+=sub; return it.qty+'x '+n+' - $'+sub.toFixed(2); });
+  var text='Pedido - '+BIZ_NAME+'\n'+lines.join('\n')+'\nTotal: $'+total.toFixed(2)+'\n\n(Adjunto el ticket que acabo de descargar)';
+  if(ORDER_WA){ window.open('https://wa.me/'+ORDER_WA+'?text='+encodeURIComponent(text), '_blank'); }
+}
+function updateOrderBar(){
+  var count=0,total=0;
+  var names=Object.keys(CART);
+  names.forEach(function(n){ count+=CART[n].qty; total+=CART[n].qty*priceNum(CART[n].price); });
+  var cl=document.getElementById('cartList');
+  cl.innerHTML = names.map(function(n){ return '<div class="cartRow"><span>'+CART[n].qty+'x '+esc2(n)+'</span><button class="rm" data-n="'+esc2(n).replace(/"/g,'&quot;')+'">×</button></div>'; }).join('');
+  Array.prototype.forEach.call(cl.querySelectorAll('.rm'), function(b){ b.onclick=function(){ removeFromCart(b.dataset.n); }; });
+  document.getElementById('orderSummary').textContent = count ? (count+(count===1?' producto · Total $':' productos · Total $')+total.toFixed(2)) : '';
+  document.getElementById('orderBar').classList.toggle('on', count>0);
+}
+document.getElementById('menuSearch').addEventListener('input', function(e){ MENU_STATE.q=e.target.value.trim(); renderMenuGrid(); });
+renderMenuPage();
 var gState={};
 function startGame(){
   var emojis="🔌,📡,💡,🖥️,🔒,📷,🛠️,📶".split(',').map(function(s){return s.trim()}).filter(Boolean).slice(0,8);
@@ -37,101 +103,46 @@ function updateBar(){
   document.getElementById('gMoves').textContent='Movimientos: '+gState.moves;
   document.getElementById('gPairs').textContent='Pares: '+(gState.matched.length/2)+'/8';
 }
-
-// ===== MENÚ DE RESTAURANTE =====
-const RESTAURANT_MENU = {
-  comida:{label:"Comidas",icon:"i-comida",items:[
-    {n:"Hamburguesa Especial",d:"Carne Angus, queso y salsa de la casa",p:189,i:"burger",bg:"#3a2217",top:true},
-    {n:"Hamburguesa Clásica",d:"Carne, lechuga, jitomate y queso",p:149,i:"burger",bg:"#4a2c1c"},
-    {n:"Tacos al pastor (3)",d:"Piña, cilantro y cebolla en tortilla de maíz",p:95,i:"taco",bg:"#2f3b1e"},
-    {n:"Pizza Margarita",d:"Mozzarella fresca, albahaca y salsa de tomate",p:165,i:"pizza",bg:"#4d2a1a",top:true},
-    {n:"Papas a la francesa",d:"Crujientes, con sal de mar y aderezo",p:59,i:"fries",bg:"#4a3a14"}
-  ]},
-  bebida:{label:"Bebidas",icon:"i-bebida",items:[
-    {n:"Refresco de cola",d:"355 ml, bien frío",p:35,i:"soda",bg:"#3a1a1a"},
-    {n:"Jugo de naranja",d:"Natural, recién exprimido",p:55,i:"juice",bg:"#4a2e12",top:true},
-    {n:"Café americano",d:"Grano de la región, 12 oz",p:45,i:"coffee",bg:"#2d1f17"},
-    {n:"Limonada mineral",d:"Con hielo y hierbabuena",p:50,i:"juice",bg:"#27381f"}
-  ]},
-  postre:{label:"Postres",icon:"i-postre",items:[
-    {n:"Pastel de chocolate",d:"Tres capas con ganache oscuro",p:79,i:"cake",bg:"#3b2020",top:true},
-    {n:"Helado artesanal",d:"Dos bolas a elegir: vainilla, fresa o chocolate",p:65,i:"icecream",bg:"#3a2433"},
-    {n:"Flan napolitano",d:"Receta casera con caramelo",p:55,i:"flan",bg:"#473618"}
-  ]}
-};
-
-let menuCategory="comida";
-let menuOrder={};
-
-function money(n){return "$"+n.toFixed(2);}
-
-function initRestaurantMenu(){
-  const tabs=document.getElementById("menuTabs");
-  if(!tabs || tabs.dataset.ready==="1") return;
-  tabs.dataset.ready="1";
-
-  Object.keys(RESTAURANT_MENU).forEach(function(k){
-    const b=document.createElement("button");
-    b.className="restaurantTab";
-    b.setAttribute("role","tab");
-    b.dataset.k=k;
-    b.innerHTML='<svg viewBox="0 0 100 100"><use href="#'+RESTAURANT_MENU[k].icon+'"></use></svg>'+RESTAURANT_MENU[k].label;
-    b.onclick=function(){
-      menuCategory=k;
-      document.getElementById("menuSearch").value="";
-      renderRestaurantMenu();
-    };
-    tabs.appendChild(b);
-  });
-
-  document.getElementById("menuSearch").addEventListener("input",renderRestaurantMenu);
-  document.getElementById("menuGrid").addEventListener("click",function(e){
-    const b=e.target.closest(".foodAdd");
-    if(!b)return;
-    menuOrder[b.dataset.n]=(menuOrder[b.dataset.n]||0)+1;
-    b.textContent="Agregado ✓";
-    setTimeout(function(){b.textContent="Agregar";},900);
-    updateOrderBar();
-  });
-  document.getElementById("clearOrder").onclick=function(){menuOrder={};updateOrderBar();};
-  renderRestaurantMenu();
+function selectGame(g){
+  document.getElementById('memoGame').style.display = g==='memo' ? 'block':'none';
+  document.getElementById('puzzleGame').style.display = g==='puzzle' ? 'block':'none';
+  var tabs=document.querySelectorAll('.gtab');
+  Array.prototype.forEach.call(tabs, function(b){ b.classList.toggle('active', b.dataset.g===g); });
+  if(g==='puzzle' && !pState) startPuzzle();
 }
-
-function renderRestaurantMenu(){
-  const search=document.getElementById("menuSearch");
-  if(!search)return;
-  const q=search.value.trim().toLowerCase();
-  document.querySelectorAll(".restaurantTab").forEach(function(t){
-    t.setAttribute("aria-selected",t.dataset.k===menuCategory);
-  });
-  const list=q
-    ? Object.values(RESTAURANT_MENU).flatMap(function(c){return c.items;}).filter(function(x){
-        return (x.n+" "+x.d).toLowerCase().includes(q);
-      })
-    : RESTAURANT_MENU[menuCategory].items;
-
-  document.getElementById("menuGrid").innerHTML=list.length?list.map(function(x){
-    return '<article class="foodCard">'+
-      '<div class="foodThumb" style="background:'+x.bg+'"><svg viewBox="0 0 100 100"><use href="#'+x.i+'"></use></svg></div>'+
-      '<div class="foodInfo">'+
-      (x.top?'<span class="foodBadge">★ Destacado</span>':'')+
-      '<h3>'+x.n+'</h3><p>'+x.d+'</p>'+
-      '<div class="foodRow"><span class="foodPrice">'+money(x.p)+'</span>'+
-      '<button class="foodAdd" data-n="'+x.n+'">Agregar</button></div></div></article>';
-  }).join(""):'<p class="menuEmpty">No encontramos platillos con ese nombre.</p>';
+var pState=null;
+function pNeighbors(i){
+  var r=Math.floor(i/4), c=i%4, n=[];
+  if(r>0) n.push(i-4); if(r<3) n.push(i+4); if(c>0) n.push(i-1); if(c<3) n.push(i+1);
+  return n;
 }
-
-function updateOrderBar(){
-  const all=Object.values(RESTAURANT_MENU).flatMap(function(c){return c.items;});
-  let qty=0,total=0;
-  Object.keys(menuOrder).forEach(function(n){
-    const item=all.find(function(x){return x.n===n;});
-    qty+=menuOrder[n];
-    if(item)total+=menuOrder[n]*item.p;
-  });
-  document.getElementById("orderSummary").textContent=qty+" "+(qty===1?"producto":"productos")+" · Total "+money(total);
-  document.getElementById("orderBar").classList.toggle("on",qty>0);
+function startPuzzle(){
+  var arr=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0], empty=15;
+  for(var i=0;i<200;i++){
+    var ns=pNeighbors(empty); var n=ns[Math.floor(Math.random()*ns.length)];
+    var t=arr[empty]; arr[empty]=arr[n]; arr[n]=t; empty=n;
+  }
+  pState={arr:arr,moves:0};
+  renderPuzzle();
 }
-
-document.addEventListener("DOMContentLoaded",initRestaurantMenu);
-
+function renderPuzzle(){
+  var grid=document.getElementById('pGrid'); grid.innerHTML='';
+  pState.arr.forEach(function(v,i){
+    var d=document.createElement('div');
+    d.className='pTile'+(v===0?' empty':'');
+    d.textContent = v===0?'':v;
+    d.onclick=function(){ tapTile(i); };
+    grid.appendChild(d);
+  });
+  document.getElementById('pMoves').textContent='Movimientos: '+pState.moves;
+  var solved = pState.arr.every(function(v,i){ return i===15? v===0 : v===i+1; });
+  document.getElementById('pWin').textContent = solved ? '¡Resuelto! 🎉' : '';
+}
+function tapTile(i){
+  var empty=pState.arr.indexOf(0);
+  if(pNeighbors(empty).indexOf(i)>-1){
+    var t=pState.arr[empty]; pState.arr[empty]=pState.arr[i]; pState.arr[i]=t;
+    pState.moves++;
+    renderPuzzle();
+  }
+}
