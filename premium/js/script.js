@@ -27,25 +27,25 @@ function removeFromCart(n){ delete CART[n]; updateOrderBar(); }
 var BIZ_NAME="Zyntro", ORDER_WA="523334073035";
 function buildTicketPdf(){
   if(!window.jspdf || !window.jspdf.jsPDF){
-    throw new Error('La librería jsPDF no está disponible. Revisa tu conexión a internet.');
+    throw new Error("No se pudo cargar jsPDF. Verifica tu conexión a Internet.");
   }
   var jsPDF=window.jspdf.jsPDF;
-  var doc=new jsPDF({unit:'mm',format:'a4'});
-  var now=new Date().toLocaleString('es-MX');
+  var doc=new jsPDF({unit:"mm",format:"a4"});
+  var now=new Date().toLocaleString("es-MX");
   doc.setFontSize(16); doc.text(BIZ_NAME,14,18);
-  doc.setFontSize(10); doc.text('Ticket de pedido · '+now,14,25);
+  doc.setFontSize(10); doc.text("Ticket de pedido · "+now,14,25);
   doc.setLineWidth(.3); doc.line(14,29,196,29);
   var y=38,total=0;
   doc.setFontSize(11);
   Object.keys(CART).forEach(function(n){
-    var it=CART[n],sub=it.qty*priceNum(it.price); total+=sub;
-    if(y>275){doc.addPage();y=20;}
-    doc.text(it.qty+'x '+n,14,y);
-    doc.text('$'+sub.toFixed(2),196,y,{align:'right'});
+    var it=CART[n], sub=it.qty*priceNum(it.price); total+=sub;
+    if(y>275){doc.addPage(); y=20;}
+    doc.text(it.qty+"x "+n,14,y);
+    doc.text("$"+sub.toFixed(2),196,y,{align:"right"});
     y+=7;
   });
   doc.setLineWidth(.3); doc.line(14,y+2,196,y+2);
-  doc.setFontSize(13); doc.text('Total: $'+total.toFixed(2),14,y+12);
+  doc.setFontSize(13); doc.text("Total: $"+total.toFixed(2),14,y+12);
   return doc;
 }
 
@@ -53,63 +53,56 @@ function orderText(){
   var total=0;
   var lines=Object.keys(CART).map(function(n){
     var it=CART[n],sub=it.qty*priceNum(it.price); total+=sub;
-    return it.qty+'x '+n+' - $'+sub.toFixed(2);
+    return it.qty+"x "+n+" - $"+sub.toFixed(2);
   });
-  return 'Pedido - '+BIZ_NAME+'
-'+lines.join('
-')+'
-Total: $'+total.toFixed(2);
+  return "Pedido - "+BIZ_NAME+"\n"+lines.join("\n")+"\nTotal: $"+total.toFixed(2);
 }
 
-function downloadBlob(blob,filename){
+function downloadBlob(blob,name){
   var url=URL.createObjectURL(blob);
-  var a=document.createElement('a');
-  a.href=url; a.download=filename;
+  var a=document.createElement("a");
+  a.href=url; a.download=name;
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(function(){URL.revokeObjectURL(url);},1500);
 }
 
 function downloadOrderPdf(){
-  if(Object.keys(CART).length===0){alert('Agrega al menos un producto al pedido.');return;}
+  if(Object.keys(CART).length===0){alert("Agrega al menos un producto.");return;}
   try{
     var doc=buildTicketPdf();
-    downloadBlob(doc.output('blob'),'pedido-'+Date.now()+'.pdf');
-  }catch(err){
-    alert(err.message || 'No fue posible crear el PDF.');
+    downloadBlob(doc.output("blob"),"pedido-"+Date.now()+".pdf");
+  }catch(e){alert(e.message || "No fue posible crear el PDF.");}
+}
+
+async function shareOrderPdf(){
+  if(Object.keys(CART).length===0){alert("Agrega al menos un producto.");return;}
+  try{
+    var doc=buildTicketPdf();
+    var file=new File([doc.output("blob")],"pedido-"+Date.now()+".pdf",{type:"application/pdf"});
+    if(navigator.share && (!navigator.canShare || navigator.canShare({files:[file]}))){
+      await navigator.share({title:"Pedido - "+BIZ_NAME,text:orderText(),files:[file]});
+      return;
+    }
+    downloadBlob(file,file.name);
+    alert("Tu navegador no permite adjuntar el PDF automáticamente. Se descargó el archivo para que puedas adjuntarlo.");
+  }catch(e){
+    if(e && e.name==="AbortError") return;
+    alert(e.message || "No fue posible compartir el PDF.");
   }
 }
 
-async function sendOrder(){
-  if(Object.keys(CART).length===0){alert('Agrega al menos un producto al pedido.');return;}
+function emailOrder(){
+  if(Object.keys(CART).length===0){alert("Agrega al menos un producto.");return;}
+  var subject=encodeURIComponent("Pedido - "+BIZ_NAME);
+  var body=encodeURIComponent(orderText()+"\n\nSi deseas adjuntar el PDF, usa el botón Compartir PDF en un móvil compatible.");
+  window.location.href="mailto:ventascruzleal@gmail.com?subject="+subject+"&body="+body;
+}
+
+function sendOrder(){
+  if(Object.keys(CART).length===0){alert("Agrega al menos un producto.");return;}
   var text=orderText();
-  try{
-    var doc=buildTicketPdf();
-    var blob=doc.output('blob');
-    var file=new File([blob],'pedido-'+Date.now()+'.pdf',{type:'application/pdf'});
-
-    // En móvil/HTTPS comparte el PDF real usando la hoja nativa del teléfono.
-    if(navigator.share && (!navigator.canShare || navigator.canShare({files:[file]}))){
-      await navigator.share({
-        title:'Pedido - '+BIZ_NAME,
-        text:text,
-        files:[file]
-      });
-      return;
-    }
-
-    // Fallback: descarga el PDF y abre WhatsApp con el texto del pedido.
-    downloadBlob(blob,file.name);
-    if(ORDER_WA){
-      window.location.href='https://wa.me/'+ORDER_WA+'?text='+encodeURIComponent(text);
-    }
-  }catch(err){
-    if(err && err.name==='AbortError') return;
-    // Si falla compartir PDF, al menos permite enviar el texto por WhatsApp.
-    if(ORDER_WA){
-      window.location.href='https://wa.me/'+ORDER_WA+'?text='+encodeURIComponent(text);
-    }else{
-      alert((err && err.message) || 'No fue posible enviar el pedido.');
-    }
+  if(ORDER_WA){
+    window.location.href="https://wa.me/"+ORDER_WA+"?text="+encodeURIComponent(text);
   }
 }
 function updateOrderBar(){

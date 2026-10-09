@@ -1,0 +1,16 @@
+ESTRUCTURA
+/index.html
+/css/style.css
+/js/script.js
+/img/Logo.png
+/img/imagen-2.png (si existe)
+
+Se conservaron los enlaces tel:, mailto:, Google Maps, WhatsApp y demás vínculos del HTML original.
+
+PEDIDOS
+- Descargar PDF: genera y descarga el ticket.
+- Compartir PDF: en Android/iPhone compatible abre la hoja nativa y permite elegir Correo, WhatsApp, Drive, etc., adjuntando el PDF.
+- Correo: abre el cliente de correo con destinatario/asunto/cuerpo. Por seguridad del navegador, mailto: no puede adjuntar archivos automáticamente.
+- WhatsApp: abre el pedido como texto.
+
+Para adjuntar PDF directamente a un correo sin hoja de compartir se necesita un backend/servicio de correo; no se puede hacer de forma fiable solo con HTML/JS del navegador.
